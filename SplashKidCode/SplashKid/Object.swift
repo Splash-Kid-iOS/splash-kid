@@ -44,7 +44,7 @@ class Object: SKNode {
         physicsBody.isDynamic = true
         physicsBody.allowsRotation = true
         physicsBody.affectedByGravity = false
-        physicsBody.restitution = 0.4
+        physicsBody.restitution = 0.3
         
         self.physicsBody = physicsBody
         self.name = "square"

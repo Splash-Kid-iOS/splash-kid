@@ -24,7 +24,7 @@ class GameScene: SKScene {
     var screenHeight:CGFloat = 0
     var screenWidth:CGFloat = 0
     var worldMovedIncrement:CGFloat = 0
-    
+    let player:Player = Player(imageName: "ball")
     let worldNode:SKNode = SKNode()
     
     override func didMove(to view: SKView) {
@@ -33,12 +33,19 @@ class GameScene: SKScene {
         screenHeight = self.view!.bounds.height
         screenWidth = self.view!.bounds.width
         
-        self.anchorPoint = CGPoint(x:0.5, y: 0.0)
+        physicsWorld.gravity = CGVector(dx: 0.4, dy: 0.0)
+        
+        self.anchorPoint = CGPoint(x:0.6, y: 0.0)
+        
+        
         
         self.addChild(worldNode)
         
-        let someObject:Object = Object()
-        worldNode.addChild(someObject)
+        
+        worldNode.addChild(player)
+        player.position = CGPoint(x: 0, y: screenHeight/2.0)
+        
+        addObjectLoop()
         
         moveWorld()
         
@@ -56,14 +63,33 @@ class GameScene: SKScene {
     func worldMoved(){
         print("moved the world")
         
+        clearOldNodes()
+        
         worldMovedIncrement += 1
         
         addObjectLoop()
     }
     
+    func clearOldNodes(){
+        var nodeCount = 0
+        
+        worldNode.enumerateChildNodes(withName: "square"){
+            node, stop in
+            
+            if(node.position.x < self.screenWidth * (self.worldMovedIncrement - 1)){
+                node.removeFromParent()
+            }
+            else{
+                nodeCount += 1
+            }
+        }
+        
+        print(nodeCount)
+    }
+    
     func addObjectLoop(){
         var i = 0
-        while(i < 3){
+        while(i < 4){
             
             createObject()
             
@@ -83,6 +109,28 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        let playerLocation:CGPoint = self.convert(player.position, from: worldNode)
         
+        var repositionPlayer:Bool = false
+        
+        if playerLocation.x < -(screenWidth){
+            
+            repositionPlayer = true
+            
+        }
+        else if playerLocation.x > (screenWidth/2){
+            repositionPlayer = true
+        }
+        else if playerLocation.y > screenHeight{
+            repositionPlayer = true
+        }
+        else if playerLocation.y < 0 {
+            repositionPlayer = true
+        }
+        
+        if(repositionPlayer){
+            player.position = CGPoint(x: (screenWidth * worldMovedIncrement), y: screenHeight/2)
+            player.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+        }
     }
 }

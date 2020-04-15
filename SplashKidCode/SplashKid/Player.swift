@@ -27,7 +27,7 @@ class Player: SKSpriteNode {
         physicsBody.isDynamic = true
         physicsBody.affectedByGravity = true
         physicsBody.allowsRotation = false
-        physicsBody.restitution = 0.5
+        physicsBody.restitution = 0.3
         
         self.physicsBody = physicsBody
         
