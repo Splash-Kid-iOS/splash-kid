@@ -21,19 +21,32 @@ class GameScene: SKScene {
     
     //private var label : SKLabelNode?
     //private var spinnyNode : SKShapeNode?
+    
+    var levelCounter = -2
+    var levelWidth:CGFloat = 0
+    var levelHeight:CGFloat = 0
+    
+    
+    
     var screenHeight:CGFloat = 0
     var screenWidth:CGFloat = 0
     var worldMovedIncrement:CGFloat = 0
-    let player:Player = Player(imageName: "ball")
+    let player:Player = Player(imageName: "run02")
+    let loopingGround:SKSpriteNode = SKSpriteNode(imageNamed: "ground")
+    let loopingGround2:SKSpriteNode = SKSpriteNode(imageNamed: "ground")
     let loopingBG:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
     let loopingBG2:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
     let worldNode:SKNode = SKNode()
+    let startingPosition:CGPoint = CGPoint(x:50, y:70)
     
     override func didMove(to view: SKView) {
         
         self.backgroundColor = SKColor.black
         screenHeight = self.view!.bounds.height
         screenWidth = self.view!.bounds.width
+        
+//        levelWidth = screenWidth
+//        levelHeight = screenHeight
         
         physicsWorld.gravity = CGVector(dx: 0.4, dy: 0.0)
         
@@ -45,7 +58,13 @@ class GameScene: SKScene {
         
         
         worldNode.addChild(player)
-        player.position = CGPoint(x: 0, y: screenHeight/2.0)
+        player.position = startingPosition
+        
+        addChild(loopingGround)
+        addChild(loopingGround2)
+        
+        loopingGround.zPosition = -5
+        loopingGround2.zPosition = -5
         
         addChild(loopingBG)
         addChild(loopingBG2)
@@ -56,10 +75,17 @@ class GameScene: SKScene {
         loopingBG.yScale = 0.7
         loopingBG2.yScale = 0.7
         
+        loopingGround.xScale = 2.1
+        loopingGround2.xScale = 2.1
+        
+        loopingGround.yScale = 1.1
+        loopingGround2.yScale = 1.1
+        
         loopingBG.xScale = 0.8
         loopingBG2.xScale = 0.8
         
         startLoopingBackground()
+        startLoopingGround()
         
         addObjectLoop()
         
@@ -71,7 +97,7 @@ class GameScene: SKScene {
         
        setBackgroundPosition()
         
-        let move:SKAction = SKAction.moveBy(x: -loopingBG.size.width, y: 0, duration: 20)
+        let move:SKAction = SKAction.moveBy(x: -loopingBG.size.width, y: 0, duration: 25)
         let moveBack:SKAction = SKAction.moveBy(x: loopingBG.size.width, y: 0, duration: 0)
         let seq:SKAction = SKAction.sequence([move, moveBack])
         let rep:SKAction = SKAction.repeatForever(seq)
@@ -86,6 +112,28 @@ class GameScene: SKScene {
         
         loopingBG.position = CGPoint(x: 0, y:  screenHeight/2.0)
         loopingBG2.position = CGPoint(x: loopingBG.size.width, y:  screenHeight/2.0)
+        
+    }
+    
+    func startLoopingGround(){
+        
+       setGroundPosition()
+        
+        let move:SKAction = SKAction.moveBy(x: -loopingGround.size.width, y: 0, duration: 10)
+        let moveBack:SKAction = SKAction.moveBy(x: loopingGround.size.width, y: 0, duration: 0)
+        let seq:SKAction = SKAction.sequence([move, moveBack])
+        let rep:SKAction = SKAction.repeatForever(seq)
+        
+        loopingGround.run(rep)
+        loopingGround2.run(rep)
+        
+        
+    }
+    
+    func setGroundPosition(){
+        
+        loopingGround.position = CGPoint(x: -150, y:  150)
+        loopingGround2.position = CGPoint(x: loopingGround.size.width - 150, y:  150)
         
     }
     
@@ -129,7 +177,7 @@ class GameScene: SKScene {
     
     func addObjectLoop(){
         var i = 0
-        while(i < 4){
+        while(i < 2){
             
             createObject()
             
@@ -143,7 +191,13 @@ class GameScene: SKScene {
         worldNode.addChild(someObject)
         
         let randX = arc4random_uniform(UInt32(screenWidth))
-        let randY = arc4random_uniform(UInt32(screenHeight))
+        var randY = 0
+        if(someObject.name == "icecream"){
+           randY = 85
+        }
+        else if(someObject.name == "dog"){
+           randY = 40
+        }
         someObject.position = CGPoint(x: screenWidth * (worldMovedIncrement + 1) + CGFloat(randX), y: CGFloat(randY))
     }
     
@@ -169,7 +223,7 @@ class GameScene: SKScene {
         }
         
         if(repositionPlayer){
-            player.position = CGPoint(x: (screenWidth * worldMovedIncrement), y: screenHeight/2)
+            player.position = CGPoint(x: (screenWidth * worldMovedIncrement), y: 70)
             player.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
         }
     }

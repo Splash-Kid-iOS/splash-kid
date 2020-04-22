@@ -16,12 +16,19 @@ class Player: SKSpriteNode {
         let texture = SKTexture(imageNamed: imageName)
         let color = UIColor.clear
         let size = texture.size()
-
+        
         // Call the designated initializer
         super.init(texture: texture, color: color, size: size)
+        
+        self.xScale = 0.5
+        self.yScale = 0.5
+        
+        let newSize:CGSize = CGSize(width: self.size.width * 0.7, height: self.size.height)
 
         // Set physics properties
-        let physicsBody:SKPhysicsBody = SKPhysicsBody(circleOfRadius: size.width / 2.7)
+        let physicsBody:SKPhysicsBody = SKPhysicsBody(rectangleOf: newSize)
+        
+        
         physicsBody.categoryBitMask = BodyType.player.rawValue
         physicsBody.contactTestBitMask = BodyType.object.rawValue
         physicsBody.isDynamic = true
