@@ -25,6 +25,8 @@ class GameScene: SKScene {
     var screenWidth:CGFloat = 0
     var worldMovedIncrement:CGFloat = 0
     let player:Player = Player(imageName: "ball")
+    let loopingBG:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
+    let loopingBG2:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
     let worldNode:SKNode = SKNode()
     
     override func didMove(to view: SKView) {
@@ -45,11 +47,49 @@ class GameScene: SKScene {
         worldNode.addChild(player)
         player.position = CGPoint(x: 0, y: screenHeight/2.0)
         
+        addChild(loopingBG)
+        addChild(loopingBG2)
+        
+        loopingBG.zPosition = -200
+        loopingBG2.zPosition = -200
+        
+        loopingBG.yScale = 0.7
+        loopingBG2.yScale = 0.7
+        
+        loopingBG.xScale = 0.7
+        loopingBG2.xScale = 0.7
+        
+        startLoopingBackground()
+        
         addObjectLoop()
         
         moveWorld()
         
     }
+    
+    func startLoopingBackground(){
+        
+       resetLoopingBackground()
+        
+        let move:SKAction = SKAction.moveBy(x: -loopingBG2.size.width, y: 0, duration: 20)
+        let moveBack:SKAction = SKAction.moveBy(x: loopingBG2.size.width, y: 0, duration: 0)
+        let seq:SKAction = SKAction.sequence([move, moveBack])
+        let rep:SKAction = SKAction.repeatForever(seq)
+        
+        loopingBG.run(rep)
+        loopingBG2.run(rep)
+        
+        
+    }
+    
+    func resetLoopingBackground(){
+        
+        loopingBG.position = CGPoint(x: 0, y:  screenHeight/2.0)
+        loopingBG2.position = CGPoint(x: loopingBG2.size.width - 3, y:  screenHeight/2.0)
+        
+    }
+    
+    
     
     func moveWorld(){
         let moveWorldNode:SKAction = SKAction.moveBy(x: -screenWidth, y: 0, duration: 5)
