@@ -24,18 +24,28 @@ class Object: SKNode {
         
         if(objectSelection == 0){
             
-            imageName = "long_blue_block"
+            imageName = "icecream"
             objectSprite = SKSpriteNode(imageNamed: imageName)
-            newSize = CGSize(width: objectSprite.size.width * 0.9, height: objectSprite.size.height * 0.75)
+            objectSprite.xScale = 0.7
+            objectSprite.yScale = 0.7
+            newSize = CGSize(width: objectSprite.size.width * 0.5, height: objectSprite.size.height * 0.5)
+            
+            self.addChild(objectSprite)
+            self.name = "icecream"
         }
         else if (objectSelection == 1){
             
-            imageName = "short_orange_block"
+            imageName = "dog"
             objectSprite = SKSpriteNode(imageNamed: imageName)
-            newSize = CGSize(width: objectSprite.size.width * 0.7, height: objectSprite.size.height * 0.7)
+            objectSprite.xScale = 0.15
+            objectSprite.yScale = 0.15
+            newSize = CGSize(width: objectSprite.size.width, height: objectSprite.size.height)
+            
+            self.addChild(objectSprite)
+            self.name = "dog"
         }
         
-        self.addChild(objectSprite)
+        
         
         let physicsBody:SKPhysicsBody = SKPhysicsBody(rectangleOf: newSize)
         
@@ -47,7 +57,7 @@ class Object: SKNode {
         physicsBody.restitution = 0.3
         
         self.physicsBody = physicsBody
-        self.name = "square"
+        
         self.position = CGPoint(x: objectSprite.size.width/2.0, y: 0)
         
     }
