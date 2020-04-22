@@ -56,8 +56,8 @@ class GameScene: SKScene {
         loopingBG.yScale = 0.7
         loopingBG2.yScale = 0.7
         
-        loopingBG.xScale = 0.7
-        loopingBG2.xScale = 0.7
+        loopingBG.xScale = 0.8
+        loopingBG2.xScale = 0.8
         
         startLoopingBackground()
         
@@ -69,10 +69,10 @@ class GameScene: SKScene {
     
     func startLoopingBackground(){
         
-       resetLoopingBackground()
+       setBackgroundPosition()
         
-        let move:SKAction = SKAction.moveBy(x: -loopingBG2.size.width, y: 0, duration: 20)
-        let moveBack:SKAction = SKAction.moveBy(x: loopingBG2.size.width, y: 0, duration: 0)
+        let move:SKAction = SKAction.moveBy(x: -loopingBG.size.width, y: 0, duration: 20)
+        let moveBack:SKAction = SKAction.moveBy(x: loopingBG.size.width, y: 0, duration: 0)
         let seq:SKAction = SKAction.sequence([move, moveBack])
         let rep:SKAction = SKAction.repeatForever(seq)
         
@@ -82,10 +82,10 @@ class GameScene: SKScene {
         
     }
     
-    func resetLoopingBackground(){
+    func setBackgroundPosition(){
         
         loopingBG.position = CGPoint(x: 0, y:  screenHeight/2.0)
-        loopingBG2.position = CGPoint(x: loopingBG2.size.width - 3, y:  screenHeight/2.0)
+        loopingBG2.position = CGPoint(x: loopingBG.size.width, y:  screenHeight/2.0)
         
     }
     
