@@ -26,8 +26,6 @@ class GameScene: SKScene {
     var levelWidth:CGFloat = 0
     var levelHeight:CGFloat = 0
     
-    
-    
     var screenHeight:CGFloat = 0
     var screenWidth:CGFloat = 0
     var worldMovedIncrement:CGFloat = 0
@@ -39,6 +37,8 @@ class GameScene: SKScene {
     let worldNode:SKNode = SKNode()
     let startingPosition:CGPoint = CGPoint(x:50, y:70)
     
+    let swipeUpRec = UISwipeGestureRecognizer()
+    
     override func didMove(to view: SKView) {
         
         self.backgroundColor = SKColor.black
@@ -48,14 +48,15 @@ class GameScene: SKScene {
 //        levelWidth = screenWidth
 //        levelHeight = screenHeight
         
+        swipeUpRec.addTarget(self, action: #selector(GameScene.swipedUp))
+        swipeUpRec.direction = .up
+        self.view!.addGestureRecognizer(swipeUpRec)
+        
         physicsWorld.gravity = CGVector(dx: 0.4, dy: 0.0)
         
         self.anchorPoint = CGPoint(x:0.6, y: 0.0)
         
-        
-        
         self.addChild(worldNode)
-        
         
         worldNode.addChild(player)
         player.position = startingPosition
@@ -137,7 +138,11 @@ class GameScene: SKScene {
         
     }
     
-    
+    @objc func swipedUp(){
+        
+         player.jump()
+        
+    }
     
     func moveWorld(){
         let moveWorldNode:SKAction = SKAction.moveBy(x: -screenWidth, y: 0, duration: 5)
@@ -220,7 +225,7 @@ class GameScene: SKScene {
         
         var repositionPlayer:Bool = false
         
-        if playerLocation.x < -(screenWidth){
+        if playerLocation.x < -(screenWidth/2){
             
             repositionPlayer = true
             
@@ -235,9 +240,12 @@ class GameScene: SKScene {
             repositionPlayer = true
         }
         
-        if(repositionPlayer){
+        if (repositionPlayer){
             player.position = CGPoint(x: (screenWidth * worldMovedIncrement), y: 70)
-            player.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+//            player.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
         }
+        
+        player.update()
+
     }
 }
