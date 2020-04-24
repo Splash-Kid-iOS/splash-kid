@@ -104,7 +104,7 @@ class Player: SKSpriteNode {
     
     
     func taperJump() {
-        jumpAmount = jumpAmount * 0.1
+        jumpAmount = jumpAmount * 0.9
     }
     
     
