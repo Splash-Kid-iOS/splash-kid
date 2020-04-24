@@ -242,7 +242,7 @@ class GameScene: SKScene {
         
         if (repositionPlayer){
             player.position = CGPoint(x: (screenWidth * worldMovedIncrement), y: 70)
-//            player.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+            player.stopJump()
         }
         
         player.update()
