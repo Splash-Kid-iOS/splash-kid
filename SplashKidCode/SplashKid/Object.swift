@@ -18,7 +18,7 @@ class Object: SKNode {
         
         super.init()
         
-        let objectSelection = arc4random_uniform(2)
+        let objectSelection = arc4random_uniform(6)
         
         var newSize:CGSize = CGSize()
         
@@ -35,17 +35,60 @@ class Object: SKNode {
         }
         else if (objectSelection == 1){
             
-            imageName = "dog"
+            imageName = "pug00"
+            objectSprite = SKSpriteNode(imageNamed: imageName)
+            objectSprite.xScale = 0.5
+            objectSprite.yScale = 0.5
+            newSize = CGSize(width: objectSprite.size.width, height: objectSprite.size.height)
+            
+            self.addChild(objectSprite)
+            self.name = "dog"
+        }
+        else if (objectSelection == 2){
+            
+            imageName = "run02-girl"
+            objectSprite = SKSpriteNode(imageNamed: imageName)
+            objectSprite.xScale = 0.5
+            objectSprite.yScale = 0.5
+            newSize = CGSize(width: objectSprite.size.width * 0.7, height: objectSprite.size.height)
+            
+            self.addChild(objectSprite)
+            self.name = "girl"
+        }
+        else if (objectSelection == 3){
+            
+            imageName = "run02-boy"
+            objectSprite = SKSpriteNode(imageNamed: imageName)
+            objectSprite.xScale = 0.5
+            objectSprite.yScale = 0.5
+            newSize = CGSize(width: objectSprite.size.width * 0.7, height: objectSprite.size.height)
+            
+            self.addChild(objectSprite)
+            self.name = "boy"
+        }
+        else if (objectSelection == 4){
+            
+            imageName = "frisbee"
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.15
             objectSprite.yScale = 0.15
             newSize = CGSize(width: objectSprite.size.width, height: objectSprite.size.height)
             
             self.addChild(objectSprite)
-            self.name = "dog"
+            self.name = "frisbee"
         }
-        
-        
+        //should sprinkler be in else and not become physics body
+        else if (objectSelection == 5){
+            
+            imageName = "sprinkler"
+            objectSprite = SKSpriteNode(imageNamed: imageName)
+            objectSprite.xScale = 0.15
+            objectSprite.yScale = 0.15
+            newSize = CGSize(width: objectSprite.size.width * 0.3, height: objectSprite.size.height)
+            
+            self.addChild(objectSprite)
+            self.name = "sprinkler"
+        }
         
         let physicsBody:SKPhysicsBody = SKPhysicsBody(rectangleOf: newSize)
         
