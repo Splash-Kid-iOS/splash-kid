@@ -198,6 +198,19 @@ class GameScene: SKScene {
         else if(someObject.name == "dog"){
            randY = 40
         }
+        else if(someObject.name == "girl"){
+           randY = 70
+        }
+        else if(someObject.name == "boy"){
+           randY = 70
+        }
+        else if(someObject.name == "frisbee"){
+            randY = 100
+        }
+        else if(someObject.name == "sprinkler"){
+            randY = 40
+        }
+        
         someObject.position = CGPoint(x: screenWidth * (worldMovedIncrement + 1) + CGFloat(randX), y: CGFloat(randY))
     }
     
