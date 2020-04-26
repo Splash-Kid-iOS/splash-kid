@@ -166,7 +166,7 @@ class GameScene: SKScene {
     func clearOldNodes(){
         var nodeCount = 0
         
-        worldNode.enumerateChildNodes(withName: "square"){
+        worldNode.enumerateChildNodes(withName: "dog"){
             node, stop in
             
             if(node.position.x < self.screenWidth * (self.worldMovedIncrement - 1)){
@@ -186,8 +186,28 @@ class GameScene: SKScene {
             
             createObject()
             
+            
+            if(i == 1){
+               createEnemy()
+            }
+            
             i += 1
         }
+    }
+    
+    func createEnemy(){
+        let someObject:Enemy = Enemy()
+        someObject.zPosition = -1
+        worldNode.addChild(someObject)
+        let randX = arc4random_uniform(UInt32(screenWidth))
+        var randY = 70
+        
+        if(someObject.name == "dog"){
+            randY = 30
+        }
+        
+        someObject.position = CGPoint(x: screenWidth * (worldMovedIncrement + 1) + CGFloat(randX), y: CGFloat(randY))
+        
     }
     
     func createObject(){
@@ -198,7 +218,7 @@ class GameScene: SKScene {
         let randX = arc4random_uniform(UInt32(screenWidth))
         var randY = 0
         if(someObject.name == "icecream"){
-           randY = 85
+           randY = 70
         }
         else if(someObject.name == "dog"){
            randY = 40

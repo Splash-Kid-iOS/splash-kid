@@ -24,49 +24,27 @@ class Object: SKNode {
         
         if(objectSelection == 0){
             
-            //imageName = "icecream"
-            imageName = "pug00"
+            imageName = "icecream"
+            
             objectSprite = SKSpriteNode(imageNamed: imageName)
-            objectSprite.xScale = 0.7
-            objectSprite.yScale = 0.7
+            objectSprite.xScale = 0.5
+            objectSprite.yScale = 0.5
             newSize = CGSize(width: objectSprite.size.width * 0.5, height: objectSprite.size.height * 0.5)
             
             self.addChild(objectSprite)
-            //self.name = "icecream"
-            self.name = "dog"
+            self.name = "icecream"
+            
         }
         else if (objectSelection == 1){
             
-            imageName = "pug00"
-            objectSprite = SKSpriteNode(imageNamed: imageName)
-            objectSprite.xScale = 0.5
-            objectSprite.yScale = 0.5
-            newSize = CGSize(width: objectSprite.size.width, height: objectSprite.size.height)
             
-            self.addChild(objectSprite)
-            self.name = "dog"
         }
         else if (objectSelection == 2){
+            newSize = CGSize(width: 0.0, height: 0.0)
             
-            imageName = "run02-girl"
-            objectSprite = SKSpriteNode(imageNamed: imageName)
-            objectSprite.xScale = 0.5
-            objectSprite.yScale = 0.5
-            newSize = CGSize(width: objectSprite.size.width * 0.7, height: objectSprite.size.height)
-            
-            self.addChild(objectSprite)
-            self.name = "girl"
         }
         else if (objectSelection == 3){
             
-            imageName = "run02-boy"
-            objectSprite = SKSpriteNode(imageNamed: imageName)
-            objectSprite.xScale = 0.5
-            objectSprite.yScale = 0.5
-            newSize = CGSize(width: objectSprite.size.width * 0.7, height: objectSprite.size.height)
-            
-            self.addChild(objectSprite)
-            self.name = "boy"
         }
         else if (objectSelection == 4){
             
