@@ -24,14 +24,16 @@ class Object: SKNode {
         
         if(objectSelection == 0){
             
-            imageName = "icecream"
+            //imageName = "icecream"
+            imageName = "pug00"
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.7
             objectSprite.yScale = 0.7
             newSize = CGSize(width: objectSprite.size.width * 0.5, height: objectSprite.size.height * 0.5)
             
             self.addChild(objectSprite)
-            self.name = "icecream"
+            //self.name = "icecream"
+            self.name = "dog"
         }
         else if (objectSelection == 1){
             

@@ -15,9 +15,9 @@ class Player: SKSpriteNode {
     var isJumping:Bool = false
     var isRunning:Bool = true
     var jumpAmount:CGFloat = 0
-    var maxJump:CGFloat = 50
-    var minSpeed:CGFloat = 2.6
-    var maxHeight:CGFloat = 200
+    var maxJump:CGFloat = 70
+    var minSpeed:CGFloat = 2.65
+    var maxHeight:CGFloat = 250
     
     var runAction:SKAction?
 
@@ -50,35 +50,63 @@ class Player: SKSpriteNode {
         
         self.physicsBody = physicsBody
         
+        setUpRun()
+        setUpJump()
         startRun()
         
     }
     
     func setUpRun() {
-        self.texture = SKTexture(imageNamed: "run02")
+        let atlas = SKTextureAtlas (named: "timmy")
+         
+         var array = [String]()
+         
+         for i in 0 ... 4 {
+         
+             let nameString = String(format: "run0%i", i)
+             array.append(nameString)
+             
+         }
+         
+         var atlasTextures:[SKTexture] = []
+         
+         for i in 0 ..< array.count{
+             
+             let texture:SKTexture = atlas.textureNamed( array[i] )
+             atlasTextures.insert(texture, at:i)
+             
+         }
+         
+        let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1.0/7.5, resize: true , restore:false )
+         runAction =  SKAction.repeatForever(atlasAnimation)
         
     }
     
+    
     func startRun() {
+        
+        self.removeAction(forKey: "jumpKey")
+        self.removeAction(forKey: "glideKey")
+        self.run(runAction! , withKey:"runKey")
+        
         isRunning = true
         isJumping = false
         
-        self.texture = SKTexture(imageNamed: "run02")
 
-//        self.removeAction(forKey: "jumpKey")
-//        self.run(runAction! , withKey:"runKey")
+
     }
     
     func setUpJump() {
-        self.texture = SKTexture(imageNamed: "jump00")
+        
+        
     }
     
     func startJump(){
         
+        self.removeAction(forKey: "runKey")
         self.texture = SKTexture(imageNamed: "jump00")
 
-//        self.removeAction(forKey: "runKey")
-//        self.run(jumpAction!, withKey:"jumpKey" )
+        
         
         isRunning = false
         isJumping = true
@@ -118,13 +146,14 @@ class Player: SKSpriteNode {
     func update() {
         
         if (self.position.y > maxHeight){
-            self.position = CGPoint(x: self.position.x + minSpeed, y: self.position.y - 1.0)
-            maxHeight -= 1.0
+            self.texture = SKTexture(imageNamed: "jump01")
+            self.position = CGPoint(x: self.position.x + minSpeed + 0.8, y: self.position.y - 3.0)
+            maxHeight -= 3.0
             
             if (maxHeight <= 70){
                 stopJump()
                 self.position.y = 70
-                maxHeight = 200
+                maxHeight = 250
             }
             
         } else {
