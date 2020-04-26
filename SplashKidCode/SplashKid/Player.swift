@@ -56,6 +56,7 @@ class Player: SKSpriteNode {
     
     func setUpRun() {
         self.texture = SKTexture(imageNamed: "run02")
+        
     }
     
     func startRun() {
