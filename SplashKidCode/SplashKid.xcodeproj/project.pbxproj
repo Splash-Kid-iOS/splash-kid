@@ -12,8 +12,6 @@
 		7258530A245A0C08009F6150 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72585309245A0C08009F6150 /* MSButtonNode.swift */; };
 		7275CF1C24560C350081092D /* timmy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7275CF1B24560C350081092D /* timmy.atlas */; };
 		7275CF1E2456170E0081092D /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7275CF1D2456170E0081092D /* Enemy.swift */; };
-		7275CF21245624930081092D /* enemy2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7275CF20245624930081092D /* enemy2.atlas */; };
-		7275CF23245626B80081092D /* enemy3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7275CF22245626B80081092D /* enemy3.atlas */; };
 		7280AA392450D71E002C764F /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280AA382450D71E002C764F /* Level.swift */; };
 		7295F4DB24465454008FCBFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295F4DA24465454008FCBFE /* AppDelegate.swift */; };
 		7295F4DD24465454008FCBFE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7295F4DC24465454008FCBFE /* GameScene.sks */; };
@@ -26,6 +24,8 @@
 		7295F50124465456008FCBFE /* SplashKidUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295F50024465456008FCBFE /* SplashKidUITests.swift */; };
 		7295F50F2446645D008FCBFE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295F50E2446645D008FCBFE /* Player.swift */; };
 		7295F51124466FD8008FCBFE /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295F51024466FD8008FCBFE /* Object.swift */; };
+		72D9B643245B42AB007FC804 /* EndScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 72D9B641245B42AB007FC804 /* EndScreen.sks */; };
+		72D9B644245B42AB007FC804 /* EndScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9B642245B42AB007FC804 /* EndScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,9 +51,6 @@
 		72585309245A0C08009F6150 /* MSButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		7275CF1B24560C350081092D /* timmy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = timmy.atlas; sourceTree = "<group>"; };
 		7275CF1D2456170E0081092D /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
-		7275CF1F245620260081092D /* enemy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = enemy.atlas; sourceTree = "<group>"; };
-		7275CF20245624930081092D /* enemy2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemy2.atlas; path = ../../sprites/girl/running/enemy2.atlas; sourceTree = "<group>"; };
-		7275CF22245626B80081092D /* enemy3.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemy3.atlas; path = ../../sprites/pug/enemy3.atlas; sourceTree = "<group>"; };
 		7280AA382450D71E002C764F /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		7295F4D724465454008FCBFE /* SplashKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplashKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7295F4DA24465454008FCBFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +69,8 @@
 		7295F50224465456008FCBFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7295F50E2446645D008FCBFE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		7295F51024466FD8008FCBFE /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		72D9B641245B42AB007FC804 /* EndScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndScreen.sks; sourceTree = "<group>"; };
+		72D9B642245B42AB007FC804 /* EndScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,12 +133,11 @@
 				7295F51024466FD8008FCBFE /* Object.swift */,
 				7275CF1D2456170E0081092D /* Enemy.swift */,
 				7280AA382450D71E002C764F /* Level.swift */,
-				7275CF22245626B80081092D /* enemy3.atlas */,
-				7275CF20245624930081092D /* enemy2.atlas */,
-				7275CF1F245620260081092D /* enemy.atlas */,
 				7275CF1B24560C350081092D /* timmy.atlas */,
 				72585305245A0AF0009F6150 /* StartScreen.swift */,
 				72585307245A0B2B009F6150 /* StartScreen.sks */,
+				72D9B641245B42AB007FC804 /* EndScreen.sks */,
+				72D9B642245B42AB007FC804 /* EndScreen.swift */,
 				72585309245A0C08009F6150 /* MSButtonNode.swift */,
 			);
 			path = SplashKid;
@@ -268,10 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7295F4E624465455008FCBFE /* Main.storyboard in Resources */,
-				7275CF21245624930081092D /* enemy2.atlas in Resources */,
 				7295F4DD24465454008FCBFE /* GameScene.sks in Resources */,
-				7275CF23245626B80081092D /* enemy3.atlas in Resources */,
 				72585308245A0B2B009F6150 /* StartScreen.sks in Resources */,
+				72D9B643245B42AB007FC804 /* EndScreen.sks in Resources */,
 				7295F4E824465456008FCBFE /* Assets.xcassets in Resources */,
 				7295F4EB24465456008FCBFE /* LaunchScreen.storyboard in Resources */,
 				7275CF1C24560C350081092D /* timmy.atlas in Resources */,
@@ -302,6 +299,7 @@
 				7275CF1E2456170E0081092D /* Enemy.swift in Sources */,
 				7280AA392450D71E002C764F /* Level.swift in Sources */,
 				72585306245A0AF0009F6150 /* StartScreen.swift in Sources */,
+				72D9B644245B42AB007FC804 /* EndScreen.swift in Sources */,
 				7258530A245A0C08009F6150 /* MSButtonNode.swift in Sources */,
 				7295F51124466FD8008FCBFE /* Object.swift in Sources */,
 				7295F50F2446645D008FCBFE /* Player.swift in Sources */,
