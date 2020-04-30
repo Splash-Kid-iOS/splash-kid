@@ -12,12 +12,9 @@ import GameplayKit
 enum BodyType:UInt32 {
     case player = 1
     case object = 2
-    case anotherBody1 = 4
-    case anotherBody2 = 8
-    case anotherBody3 = 16
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate{
     
     //private var label : SKLabelNode?
     //private var spinnyNode : SKShapeNode?
@@ -39,7 +36,11 @@ class GameScene: SKScene {
     
     let swipeUpRec = UISwipeGestureRecognizer()
     
+    var isDead:Bool = false
+    
     override func didMove(to view: SKView) {
+        
+        physicsWorld.contactDelegate = self
         
         self.backgroundColor = SKColor.black
         screenHeight = self.view!.bounds.height
@@ -94,6 +95,58 @@ class GameScene: SKScene {
         
     }
     
+    func didBegin(_ contact: SKPhysicsContact){
+        print("Contact!!")
+        var firstBody:SKPhysicsBody
+        var secondBody:SKPhysicsBody
+        
+        firstBody = contact.bodyA
+        secondBody = contact.bodyB
+        
+        if(firstBody.categoryBitMask == BodyType.object.rawValue && secondBody.categoryBitMask == BodyType.player.rawValue){
+            killPlayer()
+            print("DEAD")
+        }
+        if (firstBody.categoryBitMask == BodyType.player.rawValue  && secondBody.categoryBitMask == BodyType.object.rawValue ) {
+            killPlayer()
+            print("DEAD")
+        }
+    }
+    
+    func killPlayer() {
+    
+    if ( isDead == false) {
+        isDead = true
+        print(isDead)
+        endGame()
+        }
+    }
+    
+    func endGame() {
+            /* 1) Grab reference to our SpriteKit view */
+            guard let skView = self.view as SKView? else {
+                print("Could not get Skview")
+                return
+            }
+
+            /* 2) Load Game scene */
+            guard let scene = EndScreen(fileNamed:"EndScreen") else {
+                print("Could not make GameScene, check the name is spelled correctly")
+                return
+            }
+
+            /* 3) Ensure correct aspect mode */
+            //scene.scaleMode = .aspectFill
+
+            /* Show debug */
+    //        skView.showsPhysics = true
+    //        skView.showsDrawCount = true
+    //        skView.showsFPS = true
+
+            /* 4) Start game scene */
+            skView.presentScene(scene)
+        }
+
     func startLoopingBackground(){
         
        setBackgroundPosition()
@@ -241,31 +294,7 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        let playerLocation:CGPoint = self.convert(player.position, from: worldNode)
-        
-        var repositionPlayer:Bool = false
-        
-        if playerLocation.x < -(screenWidth/2){
-            
-            repositionPlayer = true
-            
-        }
-        else if playerLocation.x > (screenWidth/2){
-            repositionPlayer = true
-        }
-        else if playerLocation.y > screenHeight{
-            repositionPlayer = true
-        }
-        else if playerLocation.y < 0 {
-            repositionPlayer = true
-        }
-        
-        if (repositionPlayer){
-            player.position = CGPoint(x: (screenWidth * worldMovedIncrement), y: 70)
-            player.stopJump()
-        }
-        
-        player.update()
-
+        if (isDead == false){
+            player.update()        }
     }
 }

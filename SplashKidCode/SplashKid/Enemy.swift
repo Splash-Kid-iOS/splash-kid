@@ -64,7 +64,7 @@ class Enemy: SKNode {
         let physicsBody:SKPhysicsBody = SKPhysicsBody(rectangleOf: newSize)
         
         physicsBody.categoryBitMask = BodyType.object.rawValue
-        physicsBody.contactTestBitMask = BodyType.object.rawValue | BodyType.player.rawValue
+        physicsBody.contactTestBitMask = BodyType.player.rawValue
         physicsBody.isDynamic = true
         physicsBody.allowsRotation = true
         physicsBody.affectedByGravity = false
