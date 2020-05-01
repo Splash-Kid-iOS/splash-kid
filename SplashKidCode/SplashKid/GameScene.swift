@@ -32,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let loopingBG:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
     let loopingBG2:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
     let worldNode:SKNode = SKNode()
-    let startingPosition:CGPoint = CGPoint(x:50, y:70)
+    let startingPosition:CGPoint = CGPoint(x:-50, y:70)
     
     let swipeUpRec = UISwipeGestureRecognizer()
     
@@ -55,7 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         physicsWorld.gravity = CGVector(dx: 0.4, dy: 0.0)
         
-        self.anchorPoint = CGPoint(x:0.6, y: 0.0)
+        self.anchorPoint = CGPoint(x:0.5, y: 0.0)
         
         self.addChild(worldNode)
         
@@ -77,8 +77,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         loopingBG.yScale = 0.7
         loopingBG2.yScale = 0.7
         
-        loopingGround.xScale = 2.1
-        loopingGround2.xScale = 2.1
+        loopingGround.xScale = 2.3
+        loopingGround2.xScale = 2.3
         
         loopingGround.yScale = 1.1
         loopingGround2.yScale = 1.1
@@ -123,27 +123,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func endGame() {
-            /* 1) Grab reference to our SpriteKit view */
             guard let skView = self.view as SKView? else {
                 print("Could not get Skview")
                 return
             }
 
-            /* 2) Load Game scene */
             guard let scene = EndScreen(fileNamed:"EndScreen") else {
                 print("Could not make GameScene, check the name is spelled correctly")
                 return
             }
 
-            /* 3) Ensure correct aspect mode */
-            //scene.scaleMode = .aspectFill
-
-            /* Show debug */
-    //        skView.showsPhysics = true
-    //        skView.showsDrawCount = true
-    //        skView.showsFPS = true
-
-            /* 4) Start game scene */
             skView.presentScene(scene)
         }
 
@@ -234,17 +223,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func addObjectLoop(){
-        var i = 0
-        while(i < 2){
+        
+        
+        var randObject = arc4random_uniform(2)
+        
             
+            
+        if(randObject == 0){
+            createEnemy()
+        }
+        else{
             createObject()
-            
-            
-            if(i == 1){
-               createEnemy()
-            }
-            
-            i += 1
         }
     }
     
@@ -294,6 +283,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+
         if (isDead == false){
             player.update()        }
     }

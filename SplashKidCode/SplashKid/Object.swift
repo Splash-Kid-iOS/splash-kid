@@ -18,7 +18,7 @@ class Object: SKNode {
         
         super.init()
         
-        let objectSelection = arc4random_uniform(6)
+        let objectSelection = arc4random_uniform(3)
         
         var newSize:CGSize = CGSize()
         
@@ -35,19 +35,8 @@ class Object: SKNode {
             self.name = "icecream"
             
         }
+        
         else if (objectSelection == 1){
-            
-            
-        }
-        else if (objectSelection == 2){
-            newSize = CGSize(width: 0.0, height: 0.0)
-            
-        }
-        else if (objectSelection == 3){
-            
-        }
-        else if (objectSelection == 4){
-            
             imageName = "frisbee"
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.15
@@ -57,9 +46,7 @@ class Object: SKNode {
             self.addChild(objectSprite)
             self.name = "frisbee"
         }
-        //should sprinkler be in else and not become physics body
-        else if (objectSelection == 5){
-            
+        else if (objectSelection == 2){
             imageName = "sprinkler"
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.15
@@ -68,7 +55,9 @@ class Object: SKNode {
             
             self.addChild(objectSprite)
             self.name = "sprinkler"
+            
         }
+        
         
         let physicsBody:SKPhysicsBody = SKPhysicsBody(rectangleOf: newSize)
         
