@@ -24,6 +24,7 @@
 		7295F50124465456008FCBFE /* SplashKidUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295F50024465456008FCBFE /* SplashKidUITests.swift */; };
 		7295F50F2446645D008FCBFE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295F50E2446645D008FCBFE /* Player.swift */; };
 		7295F51124466FD8008FCBFE /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295F51024466FD8008FCBFE /* Object.swift */; };
+		72CAF170245CDE6E000B7795 /* Balloon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CAF16F245CDE6E000B7795 /* Balloon.swift */; };
 		72D9B643245B42AB007FC804 /* EndScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 72D9B641245B42AB007FC804 /* EndScreen.sks */; };
 		72D9B644245B42AB007FC804 /* EndScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9B642245B42AB007FC804 /* EndScreen.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		7295F50224465456008FCBFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7295F50E2446645D008FCBFE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		7295F51024466FD8008FCBFE /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		72CAF16F245CDE6E000B7795 /* Balloon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balloon.swift; sourceTree = "<group>"; };
 		72D9B641245B42AB007FC804 /* EndScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndScreen.sks; sourceTree = "<group>"; };
 		72D9B642245B42AB007FC804 /* EndScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,6 +131,7 @@
 				7295F4E724465456008FCBFE /* Assets.xcassets */,
 				7295F4E924465456008FCBFE /* LaunchScreen.storyboard */,
 				7295F4EC24465456008FCBFE /* Info.plist */,
+				72CAF16F245CDE6E000B7795 /* Balloon.swift */,
 				7295F50E2446645D008FCBFE /* Player.swift */,
 				7295F51024466FD8008FCBFE /* Object.swift */,
 				7275CF1D2456170E0081092D /* Enemy.swift */,
@@ -305,6 +308,7 @@
 				7295F50F2446645D008FCBFE /* Player.swift in Sources */,
 				7295F4E124465455008FCBFE /* GameScene.swift in Sources */,
 				7295F4E324465455008FCBFE /* GameViewController.swift in Sources */,
+				72CAF170245CDE6E000B7795 /* Balloon.swift in Sources */,
 				7295F4DB24465454008FCBFE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

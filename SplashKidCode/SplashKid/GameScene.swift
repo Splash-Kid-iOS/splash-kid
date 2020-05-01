@@ -12,13 +12,16 @@ import GameplayKit
 enum BodyType:UInt32 {
     case player = 1
     case object = 2
+    case balloon = 4
+    case enemy = 8
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
     
     //private var label : SKLabelNode?
     //private var spinnyNode : SKShapeNode?
-    
+    var balloonOnScene = false
+    var balloon:Balloon = Balloon(xPosition: 0, yPosition: 0)
     var levelCounter = -2
     var levelWidth:CGFloat = 0
     var levelHeight:CGFloat = 0
@@ -35,6 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let startingPosition:CGPoint = CGPoint(x:-50, y:70)
     
     let swipeUpRec = UISwipeGestureRecognizer()
+    let tapRec = UITapGestureRecognizer()
     
     var isDead:Bool = false
     
@@ -52,6 +56,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         swipeUpRec.addTarget(self, action: #selector(GameScene.swipedUp))
         swipeUpRec.direction = .up
         self.view!.addGestureRecognizer(swipeUpRec)
+        
+        tapRec.addTarget(self, action: #selector(GameScene.tapped))
+        tapRec.numberOfTapsRequired = 2
+        self.view!.addGestureRecognizer(tapRec)
+        
         
         physicsWorld.gravity = CGVector(dx: 0.4, dy: 0.0)
         
@@ -107,19 +116,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             killPlayer()
             print("DEAD")
         }
-        if (firstBody.categoryBitMask == BodyType.player.rawValue  && secondBody.categoryBitMask == BodyType.object.rawValue ) {
+        else if(firstBody.categoryBitMask == BodyType.enemy.rawValue && secondBody.categoryBitMask == BodyType.player.rawValue){
             killPlayer()
             print("DEAD")
+        }
+        else if (firstBody.categoryBitMask == BodyType.player.rawValue  && secondBody.categoryBitMask == BodyType.object.rawValue ) {
+            killPlayer()
+            print("DEAD")
+        }
+        else if (firstBody.categoryBitMask == BodyType.player.rawValue  && secondBody.categoryBitMask == BodyType.enemy.rawValue ) {
+            killPlayer()
+            print("DEAD")
+        }
+        else if(firstBody.categoryBitMask == BodyType.balloon.rawValue && secondBody.categoryBitMask == BodyType.enemy.rawValue){
+            killEnemy(object1: firstBody.node!, object2: secondBody.node!)
+            print("balloon hit enemy")
+        }
+        else if(firstBody.categoryBitMask == BodyType.enemy.rawValue && secondBody.categoryBitMask == BodyType.balloon.rawValue){
+            killEnemy(object1: firstBody.node!, object2: secondBody.node!)
+            print("balloon hit enemy")
+        }
+        else if(firstBody.categoryBitMask == BodyType.object.rawValue && secondBody.categoryBitMask == BodyType.balloon.rawValue){
+            killBalloon(object1: secondBody.node!)
+        }
+        else if(firstBody.categoryBitMask == BodyType.balloon.rawValue && secondBody.categoryBitMask == BodyType.object.rawValue){
+            killBalloon(object1: firstBody.node!)
         }
     }
     
     func killPlayer() {
     
-    if ( isDead == false) {
-        isDead = true
-        print(isDead)
-        endGame()
-        }
+        if ( isDead == false) {
+            isDead = true
+            print(isDead)
+            endGame()
+            }
+    }
+    
+    func killEnemy(object1:SKNode, object2:SKNode){
+        object1.removeFromParent()
+        object2.removeFromParent()
+    }
+    
+    func killBalloon(object1:SKNode){
+        object1.removeFromParent()
     }
     
     func endGame() {
@@ -186,6 +226,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
     }
     
+    @objc func tapped(){
+        print("throw a balloon")
+        
+        if(player.isJumping == false){
+            balloon = Balloon(xPosition:player.position.x, yPosition: player.position.y)
+            worldNode.addChild(balloon)
+            balloonOnScene = true
+        }
+    }
+    
     func moveWorld(){
         let moveWorldNode:SKAction = SKAction.moveBy(x: -screenWidth, y: 0, duration: 5)
         let block:SKAction = SKAction.run(worldMoved)
@@ -224,10 +274,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     func addObjectLoop(){
         
-        
-        var randObject = arc4random_uniform(2)
-        
-            
+        let randObject = arc4random_uniform(2)
             
         if(randObject == 0){
             createEnemy()
@@ -285,6 +332,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         // Called before each frame is rendered
 
         if (isDead == false){
-            player.update()        }
+            player.update()
+        }
+        if(balloonOnScene){
+            balloon.update()
+        }
     }
 }

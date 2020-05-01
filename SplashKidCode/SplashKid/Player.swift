@@ -16,7 +16,7 @@ class Player: SKSpriteNode {
     var isRunning:Bool = true
     var jumpAmount:CGFloat = 0
     var maxJump:CGFloat = 70
-    var minSpeed:CGFloat = 2.65
+    var minSpeed:CGFloat = 2.8
     var maxHeight:CGFloat = 300
     
     var runAction:SKAction?
@@ -41,7 +41,7 @@ class Player: SKSpriteNode {
         
         
         physicsBody.categoryBitMask = BodyType.player.rawValue
-        physicsBody.contactTestBitMask = BodyType.object.rawValue
+        physicsBody.contactTestBitMask = BodyType.object.rawValue | BodyType.enemy.rawValue
         physicsBody.isDynamic = true
         physicsBody.affectedByGravity = false
         physicsBody.allowsRotation = false
@@ -142,6 +142,9 @@ class Player: SKSpriteNode {
         jumpAmount = 0
         startRun()
     }
+    
+    
+    
     
     func update() {
         
