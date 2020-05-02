@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "gameOver.png",
+      "filename" : "endScreen.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

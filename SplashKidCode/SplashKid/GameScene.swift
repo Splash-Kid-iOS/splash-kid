@@ -18,8 +18,10 @@ enum BodyType:UInt32 {
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
     
-    //private var label : SKLabelNode?
-    //private var spinnyNode : SKShapeNode?
+    var scoreLabel : SKLabelNode!
+    var scoreNum:Int = 0{didSet{scoreLabel.text = "SCORE: \(scoreNum)"}}
+    
+    
     var balloonOnScene = false
     var balloon:Balloon = Balloon(xPosition: 0, yPosition: 0)
     var levelCounter = -2
@@ -50,8 +52,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         screenHeight = self.view!.bounds.height
         screenWidth = self.view!.bounds.width
         
-//        levelWidth = screenWidth
-//        levelHeight = screenHeight
+        scoreLabel = SKLabelNode(text: "SCORE: 0")
+        scoreLabel.position = CGPoint(x:-screenWidth/2 + screenWidth/6 ,y:screenHeight-70)
+        scoreLabel.zPosition = 5
+        scoreLabel.fontSize = 45
+        scoreLabel.fontName = "ChalkboardSE-Bold"
+        scoreLabel.fontColor = UIColor.systemTeal
+        self.addChild(scoreLabel)
         
         swipeUpRec.addTarget(self, action: #selector(GameScene.swipedUp))
         swipeUpRec.direction = .up
@@ -154,8 +161,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func killEnemy(object1:SKNode, object2:SKNode){
+        scoreNum += 10
         object1.removeFromParent()
         object2.removeFromParent()
+        
     }
     
     func killBalloon(object1:SKNode){
@@ -168,12 +177,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 return
             }
 
+            let transition = SKTransition.fade(withDuration: 0.5)
             guard let scene = EndScreen(fileNamed:"EndScreen") else {
-                print("Could not make GameScene, check the name is spelled correctly")
+                print("Could not make EndScreen, check the name is spelled correctly")
                 return
             }
+            
+            scene.score = scoreNum
 
-            skView.presentScene(scene)
+            skView.presentScene(scene, transition: transition)
         }
 
     func startLoopingBackground(){
