@@ -336,6 +336,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
         if(balloonOnScene){
             balloon.update()
+            if((balloon.position.x - player.position.x) > screenWidth/2){
+                killBalloon(object1: balloon)
+            }
         }
+        
     }
 }
