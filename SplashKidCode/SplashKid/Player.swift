@@ -11,16 +11,17 @@ import SpriteKit
 
 class Player: SKSpriteNode {
     
+    //global variables for the player class
+    var runAction:SKAction?
     var jumpAction:SKAction?
     var isJumping:Bool = false
     var isRunning:Bool = true
     var jumpAmount:CGFloat = 0
     var maxJump:CGFloat = 70
-    var minSpeed:CGFloat = 0
     var maxHeight:CGFloat = 300
-    
-    var runAction:SKAction?
+    var minSpeed:CGFloat = 0
 
+    //initialize the player object with the player image name
     init(imageName:String) {
         // Make a texture from an image, a color, and size
         let texture = SKTexture(imageNamed: imageName)
@@ -30,14 +31,16 @@ class Player: SKSpriteNode {
         // Call the designated initializer
         super.init(texture: texture, color: color, size: size)
         
+        //set the size of the player node
         self.xScale = 0.5
         self.yScale = 0.5
         
+        //size variable to set the size of the physics body
         let newSize:CGSize = CGSize(width: self.size.width * 0.7, height: self.size.height)
 
-        // Set physics properties
+        //create the physics body around the desired rectangle size around the node
         let physicsBody:SKPhysicsBody = SKPhysicsBody(rectangleOf: newSize)
-        
+        // Set physics properties
         physicsBody.categoryBitMask = BodyType.player.rawValue
         physicsBody.contactTestBitMask = BodyType.object.rawValue | BodyType.enemy.rawValue
         physicsBody.isDynamic = true
@@ -45,114 +48,123 @@ class Player: SKSpriteNode {
         physicsBody.allowsRotation = false
         physicsBody.restitution = 0.3
         physicsBody.friction = 0.9
-        
+        //set the created physics body to the node's physics body
         self.physicsBody = physicsBody
         
         setUpRun()
-        setUpJump()
         startRun()
-        
     }
     
+    //set up the sprite animation of timmy running
     func setUpRun() {
         
+        //atlas variable based on timmy.atlas
         let atlas = SKTextureAtlas (named: "timmy")
-         
-         var array = [String]()
-         
-         for i in 0 ... 4 {
-         
-             let nameString = String(format: "run0%i", i)
-             array.append(nameString)
-             
-         }
-         
-         var atlasTextures:[SKTexture] = []
-         
-         for i in 0 ..< array.count{
-             
-             let texture:SKTexture = atlas.textureNamed( array[i] )
-             atlasTextures.insert(texture, at:i)
-             
-         }
-         
+        
+        //array to store all image names for the atlas
+        var array = [String]()
+        //iterate through all of the timmy run images and store in the array
+        for i in 0 ... 4 {
+            let nameString = String(format: "run0%i", i)
+            array.append(nameString)
+        }
+        
+        //an array of textures
+        var atlasTextures:[SKTexture] = []
+        //iterate through the array to fill atlas array with textures from image names
+        for i in 0 ..< array.count{
+            let texture:SKTexture = atlas.textureNamed( array[i] )
+            atlasTextures.insert(texture, at:i)
+        }
+        
+        //create an animation action based on all of the textures in atlasTextures
         let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1.0/7.5, resize: true , restore:false )
-         runAction =  SKAction.repeatForever(atlasAnimation)
+        //whenever runaction is called, repeat the animation forever
+        runAction =  SKAction.repeatForever(atlasAnimation)
         
     }
     
-    
+    //start timmy running
     func startRun() {
         
+        //stop the jumping action and run the running action
         self.removeAction(forKey: "jumpKey")
-        self.removeAction(forKey: "glideKey")
         self.run(runAction! , withKey:"runKey")
-        
+        //set boolan variables
         isRunning = true
         isJumping = false
         
     }
     
-    func setUpJump() {
-        
-        
-    }
-    
+    //start timmy's jump action
     func startJump(){
         
+        //remove the running action
         self.removeAction(forKey: "runKey")
+        //display first texture of timmy's initial jumping image
         self.texture = SKTexture(imageNamed: "jump00")
-        
+        //set boolean variables
         isRunning = false
         isJumping = true
         
     }
     
+    //timmy jumps
     func jump() {
-        
+        //only jump if player is currently not jumping
         if ( isJumping == false ) {
-            
+            //call function to start the jump
             startJump()
+            //set the jump amount to the maxJump height
             jumpAmount = maxJump
             
+            //sequence for timmy's jumping action
             let callAgain:SKAction = SKAction.run(taperJump)
             let wait:SKAction = SKAction.wait(forDuration: 1/60)
             let seq:SKAction = SKAction.sequence([wait, callAgain])
             let `repeat`:SKAction = SKAction.repeat(seq, count: 20)
-
+            //run the sequence
             self.run(`repeat`)
             
         }
-        
     }
     
+    //when jumping decrease the jump amount as timmy goes up
     func taperJump() {
         jumpAmount = jumpAmount * 0.9
     }
     
+    //stop the jump
     func stopJump() {
         isJumping = false
         jumpAmount = 0
+        //start run again
         startRun()
     }
     
     func update() {
         
+        //when timmy reaches the peak of his jump
         if (self.position.y > maxHeight){
+            //change the displayed texture to timmy coming down from jump
             self.texture = SKTexture(imageNamed: "jump01")
+            //decrease timmy's position
             self.position = CGPoint(x: self.position.x + minSpeed, y: self.position.y - 3.0)
             maxHeight -= 3.0
             
+            //decrease timmy's y position until he reaches the ground level
             if (maxHeight <= 70){
+                //stop jump action
                 stopJump()
+                //reset timmy's y position to the initial 70
                 self.position.y = 70
+                //reset the max height
                 maxHeight = 300
             }
             
-        } else {
+        } else { //timmy is continuing to increase his y position while jumping 
             self.position = CGPoint(x: self.position.x + minSpeed, y: self.position.y + jumpAmount * 0.4)
         }
-        
     }
 
     required init?(coder aDecoder: NSCoder) {
