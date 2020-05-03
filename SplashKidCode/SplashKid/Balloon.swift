@@ -48,7 +48,7 @@ class Balloon: SKSpriteNode {
     
     
     func update(){
-        self.position.x += 10
+        self.position.x += 7
     }
     
     required init?(coder aDecoder: NSCoder) {

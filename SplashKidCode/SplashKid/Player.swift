@@ -16,7 +16,7 @@ class Player: SKSpriteNode {
     var isRunning:Bool = true
     var jumpAmount:CGFloat = 0
     var maxJump:CGFloat = 70
-    var minSpeed:CGFloat = 2.8
+    var minSpeed:CGFloat = 0
     var maxHeight:CGFloat = 300
     
     var runAction:SKAction?
@@ -150,7 +150,7 @@ class Player: SKSpriteNode {
         
         if (self.position.y > maxHeight){
             self.texture = SKTexture(imageNamed: "jump01")
-            self.position = CGPoint(x: self.position.x + minSpeed + 0.8, y: self.position.y - 3.0)
+            self.position = CGPoint(x: self.position.x + minSpeed, y: self.position.y - 3.0)
             maxHeight -= 3.0
             
             if (maxHeight <= 70){

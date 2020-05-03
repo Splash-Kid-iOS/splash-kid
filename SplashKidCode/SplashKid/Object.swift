@@ -29,7 +29,7 @@ class Object: SKNode {
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.5
             objectSprite.yScale = 0.5
-            newSize = CGSize(width: objectSprite.size.width * 0.5, height: objectSprite.size.height * 0.5)
+            newSize = CGSize(width: objectSprite.size.width * 0.2, height: objectSprite.size.height * 0.3)
             
             self.addChild(objectSprite)
             self.name = "icecream"
@@ -41,7 +41,7 @@ class Object: SKNode {
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.15
             objectSprite.yScale = 0.15
-            newSize = CGSize(width: objectSprite.size.width, height: objectSprite.size.height)
+            newSize = CGSize(width: objectSprite.size.width * 0.5, height: objectSprite.size.height * 0.5)
             
             self.addChild(objectSprite)
             self.name = "frisbee"
