@@ -21,7 +21,6 @@ class Player: SKSpriteNode {
     
     var runAction:SKAction?
 
-    
     init(imageName:String) {
         // Make a texture from an image, a color, and size
         let texture = SKTexture(imageNamed: imageName)
@@ -38,7 +37,6 @@ class Player: SKSpriteNode {
 
         // Set physics properties
         let physicsBody:SKPhysicsBody = SKPhysicsBody(rectangleOf: newSize)
-        
         
         physicsBody.categoryBitMask = BodyType.player.rawValue
         physicsBody.contactTestBitMask = BodyType.object.rawValue | BodyType.enemy.rawValue
@@ -57,6 +55,7 @@ class Player: SKSpriteNode {
     }
     
     func setUpRun() {
+        
         let atlas = SKTextureAtlas (named: "timmy")
          
          var array = [String]()
@@ -92,8 +91,6 @@ class Player: SKSpriteNode {
         isRunning = true
         isJumping = false
         
-
-
     }
     
     func setUpJump() {
@@ -105,8 +102,6 @@ class Player: SKSpriteNode {
         
         self.removeAction(forKey: "runKey")
         self.texture = SKTexture(imageNamed: "jump00")
-
-        
         
         isRunning = false
         isJumping = true
@@ -131,20 +126,15 @@ class Player: SKSpriteNode {
         
     }
     
-    
     func taperJump() {
         jumpAmount = jumpAmount * 0.9
     }
-    
     
     func stopJump() {
         isJumping = false
         jumpAmount = 0
         startRun()
     }
-    
-    
-    
     
     func update() {
         
@@ -163,9 +153,7 @@ class Player: SKSpriteNode {
             self.position = CGPoint(x: self.position.x + minSpeed, y: self.position.y + jumpAmount * 0.4)
         }
         
-        
     }
-    
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

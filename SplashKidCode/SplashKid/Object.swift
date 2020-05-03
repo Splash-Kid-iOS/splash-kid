@@ -11,6 +11,7 @@ import SpriteKit
 
 class Object: SKNode {
     
+    // creating a node for each generated object
     var objectSprite:SKSpriteNode = SKSpriteNode()
     var imageName:String = ""
     
@@ -18,14 +19,15 @@ class Object: SKNode {
         
         super.init()
         
+        // random number out of 3 to determine which obstacle sprite to generate
         let objectSelection = arc4random_uniform(3)
         
+        // variable to set up obstacle sprite size
         var newSize:CGSize = CGSize()
         
-        if(objectSelection == 0){
-            
+        if (objectSelection == 0){ // if random number is 0, generate ice cream truck obstacle
+
             imageName = "icecream"
-            
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.5
             objectSprite.yScale = 0.5
@@ -36,7 +38,8 @@ class Object: SKNode {
             
         }
         
-        else if (objectSelection == 1){
+        else if (objectSelection == 1){ // if random number is 1, generate frisbee obstacle
+
             imageName = "frisbee"
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.15
@@ -46,7 +49,8 @@ class Object: SKNode {
             self.addChild(objectSprite)
             self.name = "frisbee"
         }
-        else if (objectSelection == 2){
+            
+        else if (objectSelection == 2){ // if random number is 2, generate sprinkler obstacle
             imageName = "sprinkler"
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.15
@@ -58,9 +62,8 @@ class Object: SKNode {
             
         }
         
-        
+        // set physics body to obstacle node, and initializing physics body properties
         let physicsBody:SKPhysicsBody = SKPhysicsBody(rectangleOf: newSize)
-        
         physicsBody.categoryBitMask = BodyType.object.rawValue
         physicsBody.contactTestBitMask = BodyType.player.rawValue | BodyType.balloon.rawValue
         physicsBody.isDynamic = true
@@ -70,6 +73,7 @@ class Object: SKNode {
         
         self.physicsBody = physicsBody
         
+        // set position of obstacle node to generate off the screen
         self.position = CGPoint(x: objectSprite.size.width/2.0, y: 0)
         
     }

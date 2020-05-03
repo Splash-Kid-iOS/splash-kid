@@ -110,7 +110,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         loopingGround.yScale = 1.1
         loopingGround2.yScale = 1.1
     
-        
         //initialize the animation loops
         startLoopingBackground()
         startLoopingGround()
@@ -119,7 +118,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
     }
     
-    
     //create 'forever' repeating sequence that moves 'world node'
     func moveWorld(){
         let moveWorldNode:SKAction = SKAction.moveBy(x: -screenWidth, y: 0, duration: 5)
@@ -127,7 +125,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let sequence:SKAction = SKAction.sequence([moveWorldNode, block])
         let rep:SKAction = SKAction.repeatForever(sequence)
         worldNode.run(rep)
-        
     }
     
     //after world node moves off screen, run inner functions
@@ -135,10 +132,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         print("moved the world")
         
         clearOldNodes()
-        
         worldMovedIncrement += 1
-        
         addObject()
+        
     }
     
     //set initial background position
@@ -161,7 +157,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         loopingBG.run(rep)
         loopingBG2.run(rep)
-        
         
     }
     
@@ -299,7 +294,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             isDead = true
             print(isDead)
             endGame()
-            }
+        }
+        
     }
     
     //if balloon collides with enemy, remove enemy/balloon and increase score
@@ -307,7 +303,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         scoreNum += 10
         object1.removeFromParent()
         object2.removeFromParent()
-        
     }
     
     //if balloon hits non-enemy object, remove balloon
@@ -329,7 +324,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             }
             
             scene.score = scoreNum
-
             skView.presentScene(scene, transition: transition)
         }
     
@@ -343,7 +337,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     //run function on double tap gesture
     @objc func tapped(){
-        
         print("throw a balloon")
         killBalloon(object1: balloon)
         if(player.isJumping == false){
@@ -354,9 +347,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
     }
     
-    
-    
-    
     // check player status and balloon status
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -364,13 +354,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         if (isDead == false){
             player.update()
         }
+        
         if(balloonOnScene){
             balloon.update()
             if((balloon.position.x - player.position.x) > screenWidth/2){
                 killBalloon(object1: balloon)
-                
             }
         }
-        
     }
 }
