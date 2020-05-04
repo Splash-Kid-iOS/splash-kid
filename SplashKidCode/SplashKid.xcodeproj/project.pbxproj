@@ -12,6 +12,7 @@
 		7258530A245A0C08009F6150 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72585309245A0C08009F6150 /* MSButtonNode.swift */; };
 		7275CF1C24560C350081092D /* timmy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7275CF1B24560C350081092D /* timmy.atlas */; };
 		7275CF1E2456170E0081092D /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7275CF1D2456170E0081092D /* Enemy.swift */; };
+		728C47A8246084F100C5DD35 /* splashKidMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 728C47A7246084F100C5DD35 /* splashKidMusic.mp3 */; };
 		7295F4DB24465454008FCBFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295F4DA24465454008FCBFE /* AppDelegate.swift */; };
 		7295F4DD24465454008FCBFE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7295F4DC24465454008FCBFE /* GameScene.sks */; };
 		7295F4E124465455008FCBFE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295F4E024465455008FCBFE /* GameScene.swift */; };
@@ -51,6 +52,7 @@
 		72585309245A0C08009F6150 /* MSButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		7275CF1B24560C350081092D /* timmy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = timmy.atlas; sourceTree = "<group>"; };
 		7275CF1D2456170E0081092D /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		728C47A7246084F100C5DD35 /* splashKidMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splashKidMusic.mp3; sourceTree = "<group>"; };
 		7295F4D724465454008FCBFE /* SplashKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplashKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7295F4DA24465454008FCBFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7295F4DC24465454008FCBFE /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				7295F4E024465455008FCBFE /* GameScene.swift */,
 				7295F4E224465455008FCBFE /* GameViewController.swift */,
 				7295F4E424465455008FCBFE /* Main.storyboard */,
+				728C47A7246084F100C5DD35 /* splashKidMusic.mp3 */,
 				7295F4E724465456008FCBFE /* Assets.xcassets */,
 				7295F4E924465456008FCBFE /* LaunchScreen.storyboard */,
 				7295F4EC24465456008FCBFE /* Info.plist */,
@@ -269,6 +272,7 @@
 				7295F4DD24465454008FCBFE /* GameScene.sks in Resources */,
 				72585308245A0B2B009F6150 /* StartScreen.sks in Resources */,
 				72D9B643245B42AB007FC804 /* EndScreen.sks in Resources */,
+				728C47A8246084F100C5DD35 /* splashKidMusic.mp3 in Resources */,
 				7295F4E824465456008FCBFE /* Assets.xcassets in Resources */,
 				7295F4EB24465456008FCBFE /* LaunchScreen.storyboard in Resources */,
 				7275CF1C24560C350081092D /* timmy.atlas in Resources */,

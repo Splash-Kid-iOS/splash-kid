@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "launchScreen.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Wild_West_Background2@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

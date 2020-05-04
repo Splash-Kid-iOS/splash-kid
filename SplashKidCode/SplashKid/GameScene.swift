@@ -29,10 +29,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     var screenHeight:CGFloat = 0
     var screenWidth:CGFloat = 0
-    var worldMovedIncrement:CGFloat = 0
+    
     
     //initialize starting nodes
     let worldNode:SKNode = SKNode()
+    var worldMovedIncrement:CGFloat = 0
     
     let loopingBG:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
     let loopingBG2:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
@@ -41,6 +42,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let loopingGround2:SKSpriteNode = SKSpriteNode(imageNamed: "ground")
     
     let player:Player = Player(imageName: "run02")
+    
+    let backgroundMusic = SKAudioNode(fileNamed: "splashKidMusic.mp3")
     
     //initialize gestures
     let swipeUpRec = UISwipeGestureRecognizer()
@@ -79,7 +82,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         //set screen anchor point (center of screen is xposition=0)
         self.anchorPoint = CGPoint(x:0.5, y: 0.0)
         
+        //add background music
+        
+        self.addChild(backgroundMusic)
+        
         //add highest level nodes to GameScene
+        
         self.addChild(worldNode)
         self.addChild(player)
         
@@ -121,8 +129,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     //create 'forever' repeating sequence that moves 'world node'
     func moveWorld(){
         let moveWorldNode:SKAction = SKAction.moveBy(x: -screenWidth, y: 0, duration: 5)
-        let block:SKAction = SKAction.run(worldMoved)
-        let sequence:SKAction = SKAction.sequence([moveWorldNode, block])
+        let process:SKAction = SKAction.run(worldMoved)
+        let sequence:SKAction = SKAction.sequence([moveWorldNode, process])
         let rep:SKAction = SKAction.repeatForever(sequence)
         worldNode.run(rep)
     }
@@ -293,6 +301,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         if ( isDead == false) {
             isDead = true
             print(isDead)
+            backgroundMusic.run(SKAction.stop())
             endGame()
         }
         
