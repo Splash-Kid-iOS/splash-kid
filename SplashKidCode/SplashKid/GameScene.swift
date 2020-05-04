@@ -248,7 +248,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             randY = 90
         }
         else if(someObject.name == "sprinkler"){
-            randY = 40
+            randY = 27
         }
         
         someObject.position = CGPoint(x: screenWidth * (worldMovedIncrement + 1) + CGFloat(randX), y: CGFloat(randY))
@@ -366,7 +366,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         if(balloonOnScene){
             balloon.update()
-            if((balloon.position.x - player.position.x) > screenWidth/2){
+            if((balloon.position.x) > screenWidth/2 - screenWidth/12){
                 killBalloon(object1: balloon)
             }
         }
