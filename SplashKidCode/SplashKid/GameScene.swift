@@ -34,9 +34,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     //initialize starting nodes
     let worldNode:SKNode = SKNode()
     var worldMovedIncrement:CGFloat = 0
+    var worldSpeed:TimeInterval = 5
+    //world speed display
+    var levelLabel: SKLabelNode!
     
-    let loopingBG:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
-    let loopingBG2:SKSpriteNode = SKSpriteNode(imageNamed: "skBG")
+    let loopingBG:SKSpriteNode = SKSpriteNode(imageNamed: "houses")
+    let loopingBG2:SKSpriteNode = SKSpriteNode(imageNamed: "houses")
+    
+    let loopingSky:SKSpriteNode = SKSpriteNode(imageNamed: "clouds")
+    let loopingSky2:SKSpriteNode = SKSpriteNode(imageNamed: "clouds")
+    
     
     let loopingGround:SKSpriteNode = SKSpriteNode(imageNamed: "ground")
     let loopingGround2:SKSpriteNode = SKSpriteNode(imageNamed: "ground")
@@ -70,6 +77,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         scoreLabel.fontColor = UIColor.systemTeal
         self.addChild(scoreLabel)
         
+        //set level label
+        levelLabel = SKLabelNode(text: "NEXT LEVEL!")
+        levelLabel.position = CGPoint(x:0 ,y:screenHeight/1.5)
+        levelLabel.zPosition = 5
+        levelLabel.fontSize = 45
+        levelLabel.fontName = "ChalkboardSE-Bold"
+        levelLabel.fontColor = UIColor.systemYellow
+        
         //set up gesture recognition
         swipeUpRec.addTarget(self, action: #selector(GameScene.swipedUp))
         swipeUpRec.direction = .up
@@ -100,18 +115,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.addChild(loopingBG2)
         self.addChild(loopingGround)
         self.addChild(loopingGround2)
+        self.addChild(loopingSky)
+        self.addChild(loopingSky2)
         
         //setting z pos for background nodes
         loopingGround.zPosition = -5
         loopingGround2.zPosition = -5
         loopingBG.zPosition = -200
         loopingBG2.zPosition = -200
+        loopingSky.zPosition = -400
+        loopingSky2.zPosition = -400
         
         //scale the nodes
         loopingBG.xScale = 0.8
         loopingBG2.xScale = 0.8
         loopingBG.yScale = 0.7
         loopingBG2.yScale = 0.7
+        
+        //scale sky
+        loopingSky.xScale = 0.8
+        loopingSky2.xScale = 0.8
+        loopingSky.yScale = 0.7
+        loopingSky2.yScale = 0.7
         
         loopingGround.xScale = 2.3
         loopingGround2.xScale = 2.3
@@ -121,6 +146,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         //initialize the animation loops
         startLoopingBackground()
         startLoopingGround()
+        startLoopingSky()
         addObject()
         moveWorld()
         
@@ -128,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     //create 'forever' repeating sequence that moves 'world node'
     func moveWorld(){
-        let moveWorldNode:SKAction = SKAction.moveBy(x: -screenWidth, y: 0, duration: 5)
+        let moveWorldNode:SKAction = SKAction.moveBy(x: -screenWidth, y: 0, duration: worldSpeed)
         let process:SKAction = SKAction.run(worldMoved)
         let sequence:SKAction = SKAction.sequence([moveWorldNode, process])
         let rep:SKAction = SKAction.repeatForever(sequence)
@@ -142,6 +168,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         clearOldNodes()
         worldMovedIncrement += 1
         addObject()
+        if(Int(worldMovedIncrement) == 0){
+            
+        }
+        else if(Int(worldMovedIncrement) % 5 == 0 && worldSpeed > 3 ){
+            worldSpeed -= 0.5
+            print("lowered world duration speed")
+            worldNode.removeAllActions()
+            moveWorld()
+            //display
+            self.addChild(levelLabel)
+        }
+        else if(Int(worldMovedIncrement) % 5 == 1 && worldSpeed > 3){
+            levelLabel.removeFromParent()
+        }
         
     }
     
@@ -150,6 +190,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         loopingBG.position = CGPoint(x: 0, y:  screenHeight/2.0)
         loopingBG2.position = CGPoint(x: loopingBG.size.width, y:  screenHeight/2.0)
+        loopingSky.position = CGPoint(x: 0, y:  screenHeight/2.0)
+        loopingSky2.position = CGPoint(x: loopingSky.size.width, y:  screenHeight/2.0)
         
     }
 
@@ -165,6 +207,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         loopingBG.run(rep)
         loopingBG2.run(rep)
+        
+    }
+    
+    //create 'forever' repeating sequence that moves sky
+    func startLoopingSky(){
+        
+//       setBackgroundPosition()
+        
+        let move:SKAction = SKAction.moveBy(x: -loopingSky.size.width, y: 0, duration: 100)
+        let moveBack:SKAction = SKAction.moveBy(x: loopingSky.size.width, y: 0, duration: 0)
+        let seq:SKAction = SKAction.sequence([move, moveBack])
+        let rep:SKAction = SKAction.repeatForever(seq)
+        
+        loopingSky.run(rep)
+        loopingSky2.run(rep)
         
     }
     
@@ -370,5 +427,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 killBalloon(object1: balloon)
             }
         }
+        
     }
 }

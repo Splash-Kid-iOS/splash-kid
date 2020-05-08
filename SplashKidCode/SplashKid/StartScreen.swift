@@ -21,6 +21,7 @@ class StartScreen: SKScene {
         // variables setting up start screen image and button
         let titleScreen:SKSpriteNode = SKSpriteNode(imageNamed: "startScreen")
         let startButton:MSButtonNode = MSButtonNode(imageName: "startButton")
+        var info : SKLabelNode!
         
         addChild(titleScreen)
         addChild(startButton)
@@ -33,6 +34,15 @@ class StartScreen: SKScene {
         titleScreen.size.width = screenWidth
         titleScreen.size.height = screenHeight
         titleScreen.zPosition = -1
+        
+        info = SKLabelNode(text: "Swipe up to jump, double tap to throw a balloon!")
+        //set the position the label node and customize the font
+        info.position = CGPoint(x:0 ,y: -screenHeight/2.3)
+        info.zPosition = 5
+        info.fontSize = 25
+        info.fontName = "ChalkboardSE-Bold"
+        info.fontColor = UIColor.white
+        addChild(info!)
         
         // setting start button properties
         let newPoint:CGPoint = CGPoint(x:0, y: screenHeight/15)
