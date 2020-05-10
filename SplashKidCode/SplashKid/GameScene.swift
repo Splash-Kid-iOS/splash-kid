@@ -305,7 +305,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             randY = 90
         }
         else if(someObject.name == "sprinkler"){
-            randY = 27
+            randY = 40
         }
         
         someObject.position = CGPoint(x: screenWidth * (worldMovedIncrement + 1) + CGFloat(randX), y: CGFloat(randY))

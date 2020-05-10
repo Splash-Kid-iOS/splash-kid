@@ -40,10 +40,10 @@ class Object: SKNode {
         
         else if (objectSelection == 1){ // if random number is 1, generate frisbee obstacle
 
-            imageName = "frisbee"
+            imageName = "football"
             objectSprite = SKSpriteNode(imageNamed: imageName)
-            objectSprite.xScale = 0.15
-            objectSprite.yScale = 0.15
+            objectSprite.xScale = 0.08
+            objectSprite.yScale = 0.08
             newSize = CGSize(width: objectSprite.size.width * 0.5, height: objectSprite.size.height * 0.5)
             
             self.addChild(objectSprite)
@@ -51,7 +51,7 @@ class Object: SKNode {
         }
             
         else if (objectSelection == 2){ // if random number is 2, generate sprinkler obstacle
-            imageName = "sprinkler"
+            imageName = "cone"
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.15
             objectSprite.yScale = 0.15
