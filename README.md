@@ -18,6 +18,6 @@ It’s summertime and Timmy is in a water balloon fight with the local neighborh
 
 ## Resources
   - [MSButton](https://www.makeschool.com/academy/track/build-ios-games/clone-angry-birds-with-spritekit-and-swift-3/main-menu)
-  - Moving the World technique](https://www.cartoonsmart.com)
+  - [Moving the World technique](https://www.cartoonsmart.com)
   - [Visual Assets](https://google.com)
 
