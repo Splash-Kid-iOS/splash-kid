@@ -229,7 +229,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     func setGroundPosition(){
         
         loopingGround.position = CGPoint(x: -150, y:  150)
-        loopingGround2.position = CGPoint(x: loopingGround.size.width - 150, y:  150)
+        loopingGround2.position = CGPoint(x: loopingGround.size.width - 151, y:  150)
         
     }
     
