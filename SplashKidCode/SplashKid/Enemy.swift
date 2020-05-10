@@ -20,7 +20,7 @@ class Enemy: SKNode {
         super.init()
         
         // random number variable out of 3 to determine which enemy (animation) gets generated
-        let objectSelection = arc4random_uniform(3)
+        let objectSelection = arc4random_uniform(4)
         
         // variable to set enemy size
         var newSize:CGSize = CGSize()
@@ -36,7 +36,7 @@ class Enemy: SKNode {
             self.name = "girl"
         }
             
-        else if (objectSelection == 1){ // if random number is 1, generate boy enemy animation/sprite
+        else if (objectSelection == 1 || objectSelection == 3){ // if random number is 1 or 4, generate boy enemy animation/sprite
             imageName = "run02-boy"
             objectSprite = SKSpriteNode(imageNamed: imageName)
             objectSprite.xScale = 0.5

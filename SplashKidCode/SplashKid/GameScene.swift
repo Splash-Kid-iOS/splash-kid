@@ -138,8 +138,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         loopingSky.yScale = 0.7
         loopingSky2.yScale = 0.7
         
-        loopingGround.xScale = 2.3
-        loopingGround2.xScale = 2.3
+        loopingGround.xScale = 2.5
+        loopingGround2.xScale = 2.5
         loopingGround.yScale = 1.1
         loopingGround2.yScale = 1.1
     
@@ -168,10 +168,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         clearOldNodes()
         worldMovedIncrement += 1
         addObject()
-        if(Int(worldMovedIncrement) == 0){
-            
+        if(Int(worldMovedIncrement) == 3){
+
         }
-        else if(Int(worldMovedIncrement) % 5 == 0 && worldSpeed > 3 ){
+        else if(Int(worldMovedIncrement) % 10 == 0 && worldSpeed > 2.5 ){
             worldSpeed -= 0.5
             print("lowered world duration speed")
             worldNode.removeAllActions()
@@ -179,7 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             //display
             self.addChild(levelLabel)
         }
-        else if(Int(worldMovedIncrement) % 5 == 1 && worldSpeed > 3){
+        else if(Int(worldMovedIncrement) % 10 == 1 && worldSpeed >= 2.5){
             levelLabel.removeFromParent()
         }
         
@@ -189,9 +189,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     func setBackgroundPosition(){
         
         loopingBG.position = CGPoint(x: 0, y:  screenHeight/2.0)
-        loopingBG2.position = CGPoint(x: loopingBG.size.width, y:  screenHeight/2.0)
+        loopingBG2.position = CGPoint(x: loopingBG.size.width - 1, y:  screenHeight/2.0)
         loopingSky.position = CGPoint(x: 0, y:  screenHeight/2.0)
-        loopingSky2.position = CGPoint(x: loopingSky.size.width, y:  screenHeight/2.0)
+        loopingSky2.position = CGPoint(x: loopingSky.size.width - 1, y:  screenHeight/2.0)
         
     }
 
@@ -405,12 +405,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     @objc func tapped(){
         print("throw a balloon")
         killBalloon(object1: balloon)
-        if(player.isJumping == false){
+        //if(player.isJumping == false){
             balloon = Balloon(xPosition:player.position.x + 15, yPosition: player.position.y)
             self.addChild(balloon)
             balloonOnScene = true
             player.position.x = CGFloat(-screenWidth/4)
-        }
+        //}
     }
     
     // check player status and balloon status
