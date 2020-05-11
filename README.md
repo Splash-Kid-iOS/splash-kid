@@ -10,6 +10,9 @@ Splash Kid is an iPhone game designed to be played in landscape view where the u
 ## Game Concept
 It’s summertime and Timmy is in a water balloon fight with the local neighborhood kids! He must run through his neighborhood retro-Mario style dodging obstacles and splashing other kids with his endless supply of water balloons! For each kid he splashes, he’ll collect points to increase his overall score.
 
+## User Manual - Screenshots
+
+
 ## User Controls
 <ul>
   <li>Swipe Up: Jump</li>
