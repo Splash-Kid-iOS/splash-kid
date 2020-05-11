@@ -16,13 +16,13 @@ Splash Kid is an iPhone game designed to be played in landscape view where the u
 It’s summertime and Timmy is in a water balloon fight with the local neighborhood kids! He must run through his neighborhood retro-Mario style dodging obstacles and splashing other kids with his endless supply of water balloons! For each kid he splashes, he’ll collect points to increase his overall score.
 
 ## User Manual - Screenshots
-Start Screen:
+**Start Screen:**
 ![Splash Kid Start Screen](https://github.com/Splash-Kid-iOS/splash-kid/blob/master/screens/start.png)
 
-Gameplay Screen:
+**Gameplay Screen:**
 ![Splash Kid Gameplay Screen](https://github.com/Splash-Kid-iOS/splash-kid/blob/master/screens/gamePlay.png)
 
-End Screen:
+**End Screen:**
 ![Splash Kid End Screen](https://github.com/Splash-Kid-iOS/splash-kid/blob/master/screens/end.png)
 
 ## User Controls
