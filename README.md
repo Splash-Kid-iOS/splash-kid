@@ -13,7 +13,7 @@ It’s summertime and Timmy is in a water balloon fight with the local neighborh
 ## User Manual - Screenshots
 
 Start Screen:
-![Splash Kid Start Screen](https://github.com/Splash-Kid-iOS/splash-kid/screens/start.png "Start Screen")
+![Splash Kid Start Screen](https://github.com/Splash-Kid-iOS/splash-kid/screens/start.png)
 
 
 ## User Controls
