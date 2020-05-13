@@ -341,24 +341,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
         else if(firstBody.categoryBitMask == BodyType.balloon.rawValue && secondBody.categoryBitMask == BodyType.enemy.rawValue){
             //play balloon splash
-            self.run(SKAction.playSoundFileNamed("balloonHit1.mp3", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("balloonSplash.wav", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("balloonHit3.mp3", waitForCompletion: false))
             killEnemy(object1: firstBody.node!, object2: secondBody.node!)
             print("balloon hit enemy")
         }
         else if(firstBody.categoryBitMask == BodyType.enemy.rawValue && secondBody.categoryBitMask == BodyType.balloon.rawValue){
             //play balloon splash
-            self.run(SKAction.playSoundFileNamed("balloonHit1.mp3", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("balloonSplash.wav", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("balloonHit3.mp3", waitForCompletion: false))
             killEnemy(object1: firstBody.node!, object2: secondBody.node!)
             print("balloon hit enemy")
         }
         else if(firstBody.categoryBitMask == BodyType.object.rawValue && secondBody.categoryBitMask == BodyType.balloon.rawValue){
-            self.run(SKAction.playSoundFileNamed("balloonHit1.mp3", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("balloonSplash.wav", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("balloonHit3.mp3", waitForCompletion: false))
 
             killBalloon(object1: secondBody.node!)
         }
         else if(firstBody.categoryBitMask == BodyType.balloon.rawValue && secondBody.categoryBitMask == BodyType.object.rawValue){
             //play balloon splash
-            self.run(SKAction.playSoundFileNamed("balloonHit1.mp3", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("balloonSplash.wav", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("balloonHit3.mp3", waitForCompletion: false))
             killBalloon(object1: firstBody.node!)
         }
     }

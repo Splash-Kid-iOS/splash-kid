@@ -21,7 +21,7 @@ class Player: SKSpriteNode {
     var maxHeight:CGFloat = 300
     var minSpeed:CGFloat = 0
     let jumpSound = SKAudioNode(fileNamed: "jumpUp.mp3")
-    let footsteps = SKAudioNode(fileNamed: "footstep.mp3")
+    let footsteps = SKAudioNode(fileNamed: "footstep1.mp3")
 
     //initialize the player object with the player image name
     init(imageName:String) {
@@ -59,8 +59,9 @@ class Player: SKSpriteNode {
         
         //audio setup
         self.addChild(footsteps)
-        footsteps.run(SKAction.changeVolume(to: 0.5, duration: 0)) 
-        footsteps.run(SKAction.changePlaybackRate(to: 0.75, duration: 0))
+        footsteps.run(SKAction.changePlaybackRate(to: 0.58, duration: 0))
+        footsteps.run(SKAction.changeVolume(by: 0.2, duration: 0))
+        
         jumpSound.autoplayLooped = false
         self.addChild(jumpSound)
         jumpSound.run(SKAction.changeVolume(by: 3, duration: 0))
@@ -93,9 +94,6 @@ class Player: SKSpriteNode {
         let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1.0/7.5, resize: true , restore:false )
         //whenever runaction is called, repeat the animation forever
         runAction =  SKAction.repeatForever(atlasAnimation)
-        
-        //setup footstep sound
-//        let footsteps = SKAction.playSoundFileNamed("footstep.mp3", waitForCompletion: false)
         
     }
     
@@ -134,7 +132,7 @@ class Player: SKSpriteNode {
             jumpAmount = maxJump
             
             //stop footsteps sound and play jumping sound
-            footsteps.run(SKAction.stop()) //pause or stop here
+            footsteps.run(SKAction.stop())
             jumpSound.run(SKAction.play())
             
             //sequence for timmy's jumping action
@@ -159,8 +157,8 @@ class Player: SKSpriteNode {
         jumpAmount = 0
         //start run again
         startRun()
-        //this sound is really harsh
-        self.run(SKAction.playSoundFileNamed("jumpLand2.mp3", waitForCompletion: false))
+        //land jump sound and play running footsteps again
+        self.run(SKAction.playSoundFileNamed("jumpLand3.wav", waitForCompletion: false))
         footsteps.run(SKAction.play())
         
     }

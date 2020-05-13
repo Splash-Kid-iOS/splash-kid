@@ -27,6 +27,11 @@
 		72CAF170245CDE6E000B7795 /* Balloon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CAF16F245CDE6E000B7795 /* Balloon.swift */; };
 		72D9B643245B42AB007FC804 /* EndScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 72D9B641245B42AB007FC804 /* EndScreen.sks */; };
 		72D9B644245B42AB007FC804 /* EndScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9B642245B42AB007FC804 /* EndScreen.swift */; };
+		B112ACED246BEC9F000D4920 /* footstep1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B112ACEC246BEC9F000D4920 /* footstep1.mp3 */; };
+		B112ACEF246BECC4000D4920 /* balloonHit3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B112ACEE246BECC4000D4920 /* balloonHit3.mp3 */; };
+		B112ACF2246BECDA000D4920 /* balloonSplash.wav in Resources */ = {isa = PBXBuildFile; fileRef = B112ACF0246BECD9000D4920 /* balloonSplash.wav */; };
+		B112ACF3246BECDA000D4920 /* balloonSplashComp.wav in Resources */ = {isa = PBXBuildFile; fileRef = B112ACF1246BECD9000D4920 /* balloonSplashComp.wav */; };
+		B112ACF5246BECE3000D4920 /* jumpLand3.wav in Resources */ = {isa = PBXBuildFile; fileRef = B112ACF4246BECE3000D4920 /* jumpLand3.wav */; };
 		B1D1F67C2469F291008429BB /* nextLevel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B1D1F67B2469F291008429BB /* nextLevel.mp3 */; };
 		B1D1F67E2469FB13008429BB /* gameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B1D1F67D2469FB13008429BB /* gameOver.mp3 */; };
 		B1D1F680246A0363008429BB /* balloonHit2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B1D1F67F246A0363008429BB /* balloonHit2.mp3 */; };
@@ -85,6 +90,11 @@
 		72CAF16F245CDE6E000B7795 /* Balloon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balloon.swift; sourceTree = "<group>"; };
 		72D9B641245B42AB007FC804 /* EndScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndScreen.sks; sourceTree = "<group>"; };
 		72D9B642245B42AB007FC804 /* EndScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndScreen.swift; sourceTree = "<group>"; };
+		B112ACEC246BEC9F000D4920 /* footstep1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = footstep1.mp3; sourceTree = "<group>"; };
+		B112ACEE246BECC4000D4920 /* balloonHit3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = balloonHit3.mp3; sourceTree = "<group>"; };
+		B112ACF0246BECD9000D4920 /* balloonSplash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = balloonSplash.wav; sourceTree = "<group>"; };
+		B112ACF1246BECD9000D4920 /* balloonSplashComp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = balloonSplashComp.wav; sourceTree = "<group>"; };
+		B112ACF4246BECE3000D4920 /* jumpLand3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jumpLand3.wav; sourceTree = "<group>"; };
 		B1D1F67B2469F291008429BB /* nextLevel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nextLevel.mp3; sourceTree = "<group>"; };
 		B1D1F67D2469FB13008429BB /* gameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameOver.mp3; sourceTree = "<group>"; };
 		B1D1F67F246A0363008429BB /* balloonHit2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = balloonHit2.mp3; sourceTree = "<group>"; };
@@ -154,12 +164,17 @@
 				7295F4E424465455008FCBFE /* Main.storyboard */,
 				728C47A7246084F100C5DD35 /* splashKidMusic.mp3 */,
 				B1D1F68D246A6C53008429BB /* footstep.mp3 */,
+				B112ACEC246BEC9F000D4920 /* footstep1.mp3 */,
 				B1D1F67B2469F291008429BB /* nextLevel.mp3 */,
 				B1D1F68B246A60B3008429BB /* nextLevel1.mp3 */,
 				B1D1F67D2469FB13008429BB /* gameOver.mp3 */,
 				B1D1F681246A036A008429BB /* balloonHit1.mp3 */,
 				B1D1F67F246A0363008429BB /* balloonHit2.mp3 */,
+				B112ACEE246BECC4000D4920 /* balloonHit3.mp3 */,
+				B112ACF0246BECD9000D4920 /* balloonSplash.wav */,
+				B112ACF1246BECD9000D4920 /* balloonSplashComp.wav */,
 				B1D1F683246A4298008429BB /* jumpUp.mp3 */,
+				B112ACF4246BECE3000D4920 /* jumpLand3.wav */,
 				B1D1F685246A434A008429BB /* jumpLand.mp3 */,
 				B1D1F687246A45FD008429BB /* jumpLand2.mp3 */,
 				B1D1F689246A5F2E008429BB /* points1.mp3 */,
@@ -308,9 +323,13 @@
 				7295F4E624465455008FCBFE /* Main.storyboard in Resources */,
 				B1D1F68E246A6C53008429BB /* footstep.mp3 in Resources */,
 				7295F4DD24465454008FCBFE /* GameScene.sks in Resources */,
+				B112ACEF246BECC4000D4920 /* balloonHit3.mp3 in Resources */,
+				B112ACED246BEC9F000D4920 /* footstep1.mp3 in Resources */,
 				B1D1F686246A434A008429BB /* jumpLand.mp3 in Resources */,
 				B1D1F684246A4298008429BB /* jumpUp.mp3 in Resources */,
 				B1D1F688246A45FD008429BB /* jumpLand2.mp3 in Resources */,
+				B112ACF5246BECE3000D4920 /* jumpLand3.wav in Resources */,
+				B112ACF2246BECDA000D4920 /* balloonSplash.wav in Resources */,
 				B1D1F67C2469F291008429BB /* nextLevel.mp3 in Resources */,
 				B1D1F68A246A5F2E008429BB /* points1.mp3 in Resources */,
 				B1D1F680246A0363008429BB /* balloonHit2.mp3 in Resources */,
@@ -319,6 +338,7 @@
 				72D9B643245B42AB007FC804 /* EndScreen.sks in Resources */,
 				728C47A8246084F100C5DD35 /* splashKidMusic.mp3 in Resources */,
 				7295F4E824465456008FCBFE /* Assets.xcassets in Resources */,
+				B112ACF3246BECDA000D4920 /* balloonSplashComp.wav in Resources */,
 				7295F4EB24465456008FCBFE /* LaunchScreen.storyboard in Resources */,
 				B1D1F691246A7899008429BB /* woosh2.wav in Resources */,
 				B1D1F68C246A60B3008429BB /* nextLevel1.mp3 in Resources */,
