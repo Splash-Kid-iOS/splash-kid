@@ -35,6 +35,8 @@ class EndScreen: SKScene {
         screenHeight = self.view!.bounds.height
         screenWidth = self.view!.bounds.width
         
+        //play game over sound
+        self.run(SKAction.playSoundFileNamed("gameOver.mp3", waitForCompletion: false))
         
         print("the score is: \(score)")
         //set the score label node with the int value in the score variable

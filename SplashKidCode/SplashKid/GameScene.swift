@@ -100,6 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         //add background music
         
         self.addChild(backgroundMusic)
+        backgroundMusic.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
         
         //add highest level nodes to GameScene
         
@@ -178,6 +179,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             moveWorld()
             //display
             self.addChild(levelLabel)
+            //queue sound
+            self.run(SKAction.playSoundFileNamed("nextLevel1.mp3", waitForCompletion: false))
         }
         else if(Int(worldMovedIncrement) % 10 == 1 && worldSpeed >= 2.5){
             levelLabel.removeFromParent()
@@ -337,31 +340,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             print("DEAD")
         }
         else if(firstBody.categoryBitMask == BodyType.balloon.rawValue && secondBody.categoryBitMask == BodyType.enemy.rawValue){
+            //play balloon splash
+            self.run(SKAction.playSoundFileNamed("balloonHit1.mp3", waitForCompletion: false))
             killEnemy(object1: firstBody.node!, object2: secondBody.node!)
             print("balloon hit enemy")
         }
         else if(firstBody.categoryBitMask == BodyType.enemy.rawValue && secondBody.categoryBitMask == BodyType.balloon.rawValue){
+            //play balloon splash
+            self.run(SKAction.playSoundFileNamed("balloonHit1.mp3", waitForCompletion: false))
             killEnemy(object1: firstBody.node!, object2: secondBody.node!)
             print("balloon hit enemy")
         }
         else if(firstBody.categoryBitMask == BodyType.object.rawValue && secondBody.categoryBitMask == BodyType.balloon.rawValue){
+            self.run(SKAction.playSoundFileNamed("balloonHit1.mp3", waitForCompletion: false))
+
             killBalloon(object1: secondBody.node!)
         }
         else if(firstBody.categoryBitMask == BodyType.balloon.rawValue && secondBody.categoryBitMask == BodyType.object.rawValue){
+            //play balloon splash
+            self.run(SKAction.playSoundFileNamed("balloonHit1.mp3", waitForCompletion: false))
             killBalloon(object1: firstBody.node!)
         }
     }
     
     //if player collides with object, end game
     func killPlayer() {
-    
         if ( isDead == false) {
             isDead = true
             print(isDead)
             backgroundMusic.run(SKAction.stop())
             endGame()
         }
-        
     }
     
     //if balloon collides with enemy, remove enemy/balloon and increase score
@@ -369,6 +378,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         scoreNum += 10
         object1.removeFromParent()
         object2.removeFromParent()
+        //play score points sound
+        self.run(SKAction.playSoundFileNamed("nextLevel.mp3", waitForCompletion: false))
+
     }
     
     //if balloon hits non-enemy object, remove balloon
@@ -382,7 +394,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 print("Could not get Skview")
                 return
             }
-
+            
             let transition = SKTransition.fade(withDuration: 0.5)
             guard let scene = EndScreen(fileNamed:"EndScreen") else {
                 print("Could not make EndScreen, check the name is spelled correctly")
@@ -396,7 +408,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     // run function on swipe up gesture
     @objc func swipedUp(){
-        
+//        self.run(SKAction.playSoundFileNamed("jumpUp.mp3", waitForCompletion: false))
          player.jump()
         
     }
@@ -404,6 +416,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     //run function on double tap gesture
     @objc func tapped(){
         print("throw a balloon")
+        self.run(SKAction.playSoundFileNamed("woosh1.wav", waitForCompletion: false))
         killBalloon(object1: balloon)
         //if(player.isJumping == false){
             balloon = Balloon(xPosition:player.position.x + 15, yPosition: player.position.y)
