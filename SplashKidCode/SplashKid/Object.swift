@@ -36,6 +36,11 @@ class Object: SKNode {
             self.addChild(objectSprite)
             self.name = "icecream"
             
+            //add audio components
+            let iceCream = SKAudioNode(fileNamed: "shortIceCream.wav")
+            self.addChild(iceCream)
+            iceCream.run(SKAction.changeVolume(to: Float(0.2), duration: 0)) //vol at 0.5
+            
         }
         
         else if (objectSelection == 1){ // if random number is 1, generate frisbee obstacle

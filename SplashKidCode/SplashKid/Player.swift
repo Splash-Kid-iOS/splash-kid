@@ -21,7 +21,7 @@ class Player: SKSpriteNode {
     var maxHeight:CGFloat = 300
     var minSpeed:CGFloat = 0
     let jumpSound = SKAudioNode(fileNamed: "jumpUp.mp3")
-    let footsteps = SKAudioNode(fileNamed: "footstep1.mp3")
+    let footsteps = SKAudioNode(fileNamed: "footstepEQ.mp3")
 
     //initialize the player object with the player image name
     init(imageName:String) {
@@ -59,8 +59,8 @@ class Player: SKSpriteNode {
         
         //audio setup
         self.addChild(footsteps)
-        footsteps.run(SKAction.changePlaybackRate(to: 0.58, duration: 0))
-        footsteps.run(SKAction.changeVolume(by: 0.2, duration: 0))
+        footsteps.run(SKAction.changePlaybackRate(to: 1.18, duration: 0))
+        footsteps.run(SKAction.changeVolume(by: 0.3, duration: 0))
         
         jumpSound.autoplayLooped = false
         self.addChild(jumpSound)

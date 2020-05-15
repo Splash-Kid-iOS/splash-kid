@@ -14,6 +14,7 @@ class Enemy: SKNode {
     var runAction:SKAction?
     var imageName:String = ""
     var objectSprite:SKSpriteNode = SKSpriteNode()
+//    var audio:SKAudioNode = SKAudioNode()
     
     override init() {
         
@@ -34,6 +35,11 @@ class Enemy: SKNode {
             
             self.addChild(objectSprite)
             self.name = "girl"
+            
+          let footsteps = SKAudioNode(fileNamed: "footstepEQ.mp3")
+          self.addChild(footsteps)
+          footsteps.run(SKAction.changePlaybackRate(to: 1.18, duration: 0))
+          footsteps.run(SKAction.changeVolume(by: 0.3, duration: 0))
         }
             
         else if (objectSelection == 1 || objectSelection == 3){ // if random number is 1 or 4, generate boy enemy animation/sprite
@@ -42,9 +48,15 @@ class Enemy: SKNode {
             objectSprite.xScale = 0.5
             objectSprite.yScale = 0.5
             newSize = CGSize(width: objectSprite.size.width * 0.7, height: objectSprite.size.height)
-            
+
             self.addChild(objectSprite)
             self.name = "boy"
+            
+            //audio setup
+            let footsteps = SKAudioNode(fileNamed: "footstepEQ.mp3")
+            self.addChild(footsteps)
+            footsteps.run(SKAction.changePlaybackRate(to: 1.18, duration: 0))
+            footsteps.run(SKAction.changeVolume(by: 0.3, duration: 0))
         }
             
         else if (objectSelection == 2){ // if random number is 2, generate dog animation/sprite
@@ -56,6 +68,13 @@ class Enemy: SKNode {
             
             self.addChild(objectSprite)
             self.name = "dog"
+            
+            //add audio components to dog
+//            audio = SKAudioNode(fileNamed: "dogPant1.wav") //should i add here
+
+            let panting = SKAudioNode(fileNamed: "dogPant1.wav") //should i add here or up there?
+            self.addChild(panting)
+            panting.run(SKAction.changeVolume(to: Float(5), duration: 0)) // causes weird echo effect
         }
 
         // setting physics properties
