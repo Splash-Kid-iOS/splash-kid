@@ -14,7 +14,6 @@ class Enemy: SKNode {
     var runAction:SKAction?
     var imageName:String = ""
     var objectSprite:SKSpriteNode = SKSpriteNode()
-//    var audio:SKAudioNode = SKAudioNode()
     
     override init() {
         
@@ -69,12 +68,10 @@ class Enemy: SKNode {
             self.addChild(objectSprite)
             self.name = "dog"
             
-            //add audio components to dog
-//            audio = SKAudioNode(fileNamed: "dogPant1.wav") //should i add here
-
-            let panting = SKAudioNode(fileNamed: "dogPant1.wav") //should i add here or up there?
+            //add audio to dog
+            let panting = SKAudioNode(fileNamed: "dogPant1.wav")
             self.addChild(panting)
-            panting.run(SKAction.changeVolume(to: Float(5), duration: 0)) // causes weird echo effect
+            panting.run(SKAction.changeVolume(to: Float(5), duration: 0))
         }
 
         // setting physics properties
